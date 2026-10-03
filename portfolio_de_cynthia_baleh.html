@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cynthia BALEH | Portfolio - Master 1 Data</title>
+    
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome pour les icônes -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        midnight: {
+                            50: '#f4f6f8',
+                            100: '#e4ebf1',
+                            200: '#cddce4',
+                            300: '#a7c3d1',
+                            400: '#7ba1b7',
+                            500: '#5a849d',
+                            600: '#466a83',
+                            700: '#39556a',
+                            800: '#324858',
+                            900: '#0F172A', // Bleu Nuit
+                            950: '#1b2a36',
+                        },
+                        accent: '#3B82F6', // Bleu d'accentuation
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Styles additionnels pour des animations fluides */
+        body {
+            font-family: 'Inter', sans-serif;
+            color: #333;
+        }
+        
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        
+        .fade-in.appear {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .skill-badge {
+            transition: all 0.3s ease;
+        }
+        
+        .skill-badge:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            background-color: #3B82F6;
+            color: white;
+        }
+
+        .project-card {
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+    </style>
+</head>
+<body class="bg-gray-50 antialiased selection:bg-accent selection:text-white">
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 bg-white/90 backdrop-blur-md shadow-sm transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <div class="flex-shrink-0 flex items-center">
+                    <a href="#accueil" class="text-2xl font-bold text-midnight-900 tracking-tight">
+                        Cynthia<span class="text-accent">.</span>Baleh
+                    </a>
+                </div>
+                
+                <!-- Menu Desktop -->
+                <div class="hidden md:flex space-x-8 items-center">
+                    <a href="#accueil" class="text-gray-600 hover:text-accent font-medium transition-colors">Accueil</a>
+                    <a href="#competences" class="text-gray-600 hover:text-accent font-medium transition-colors">Compétences</a>
+                    <a href="#experiences" class="text-gray-600 hover:text-accent font-medium transition-colors">Expériences</a>
+                    <a href="#projets" class="text-gray-600 hover:text-accent font-medium transition-colors">Projets</a>
+                    <a href="#formations" class="text-gray-600 hover:text-accent font-medium transition-colors">Formations</a>
+                    <a href="#contact" class="px-5 py-2 rounded-full bg-midnight-900 text-white hover:bg-accent transition-colors font-medium text-sm">Me contacter</a>
+                </div>
+
+                <!-- Menu Mobile Bouton -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="text-gray-600 hover:text-midnight-900 focus:outline-none">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Menu Mobile Panel -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-100 absolute w-full shadow-lg">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 flex flex-col">
+                <a href="#accueil" class="mobile-link block px-3 py-2 text-base font-medium text-gray-700 hover:text-accent hover:bg-gray-50 rounded-md">Accueil</a>
+                <a href="#competences" class="mobile-link block px-3 py-2 text-base font-medium text-gray-700 hover:text-accent hover:bg-gray-50 rounded-md">Compétences</a>
+                <a href="#experiences" class="mobile-link block px-3 py-2 text-base font-medium text-gray-700 hover:text-accent hover:bg-gray-50 rounded-md">Expériences</a>
+                <a href="#projets" class="mobile-link block px-3 py-2 text-base font-medium text-gray-700 hover:text-accent hover:bg-gray-50 rounded-md">Projets</a>
+                <a href="#formations" class="mobile-link block px-3 py-2 text-base font-medium text-gray-700 hover:text-accent hover:bg-gray-50 rounded-md">Formations</a>
+                <a href="#contact" class="mobile-link block px-3 py-2 text-base font-medium text-accent font-bold hover:bg-gray-50 rounded-md">Me contacter</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="accueil" class="pt-32 pb-20 md:pt-40 md:pb-32 lg:min-h-screen flex items-center bg-midnight-900 relative overflow-hidden">
+        <!-- Décoration de fond (cercles flous) -->
+        <div class="absolute top-0 left-0 w-full h-full overflow-hidden z-0 pointer-events-none opacity-40">
+            <div class="absolute -top-[20%] -left-[10%] w-[50%] h-[50%] rounded-full bg-accent blur-[120px]"></div>
+            <div class="absolute top-[60%] -right-[10%] w-[40%] h-[60%] rounded-full bg-midnight-600 blur-[100px]"></div>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
+            <div class="text-center md:text-left max-w-4xl fade-in">
+                <span class="text-accent font-semibold tracking-wider uppercase text-sm mb-4 block">Portfolio Professionnel</span>
+                <h1 class="text-4xl md:text-6xl lg:text-7xl font-extrabold text-white leading-tight mb-6">
+                    Bonjour, je suis <br class="hidden md:block" />
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-accent">Cynthia BALEH</span>
+                </h1>
+                <h2 class="text-xl md:text-2xl text-gray-300 font-medium mb-6">
+                    Étudiante en Master 1 Data
+                </h2>
+                
+                <div class="bg-white/10 backdrop-blur-sm border border-white/10 rounded-2xl p-6 md:p-8 inline-block mb-10 text-left">
+                    <p class="text-lg text-white font-medium flex items-center mb-3">
+                        <i class="fas fa-search text-accent mr-3"></i> Recherche d'un stage de 8 semaines minimum
+                    </p>
+                    <p class="text-lg text-white font-medium flex items-center">
+                        <i class="fas fa-briefcase text-accent mr-3"></i> Recherche d'une alternance pour septembre 2027
+                    </p>
+                </div>
+
+                <div class="flex flex-col md:flex-row items-center gap-4 md:gap-6 justify-center md:justify-start">
+                    <a href="#contact" class="w-full md:w-auto px-8 py-4 bg-accent hover:bg-blue-600 text-white font-semibold rounded-full transition-all shadow-lg hover:shadow-accent/30 text-center flex items-center justify-center gap-2">
+                        <i class="fab fa-linkedin text-xl"></i> Me contacter sur LinkedIn
+                    </a>
+                    <a href="#projets" class="w-full md:w-auto px-8 py-4 bg-transparent border-2 border-gray-400 hover:border-white text-gray-300 hover:text-white font-semibold rounded-full transition-all text-center">
+                        Voir mes projets
+                    </a>
+                </div>
+
+                <!-- Contact Info Inline -->
+                <div class="mt-12 flex flex-wrap justify-center md:justify-start gap-6 text-sm text-gray-400">
+                    <div class="flex items-center gap-2">
+                        <i class="fas fa-map-marker-alt"></i> Paris, France
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <i class="fas fa-envelope"></i> cynthiabaleh5@gmail.com
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <i class="fas fa-phone"></i> 07 51 29 80 82
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Scroll Down Indicator -->
+        <a href="#competences" class="absolute bottom-10 left-1/2 transform -translate-x-1/2 text-white/50 hover:text-white animate-bounce hidden md:block transition-colors">
+            <i class="fas fa-chevron-down text-2xl"></i>
+        </a>
+    </section>
+
+    <!-- Compétences Section -->
+    <section id="competences" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 fade-in">
+                <h2 class="text-3xl md:text-4xl font-bold text-midnight-900 mb-4">Mes Compétences</h2>
+                <div class="w-20 h-1 bg-accent mx-auto rounded-full"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Développement Logiciel -->
+                <div class="bg-gray-50 rounded-2xl p-8 border border-gray-100 shadow-sm fade-in hover:shadow-md transition-shadow">
+                    <div class="w-12 h-12 bg-blue-100 text-accent rounded-xl flex items-center justify-center text-2xl mb-6">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-midnight-900 mb-4">Développement Logiciel</h3>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="skill-badge px-3 py-1 bg-white border border-gray-200 text-gray-700 text-sm font-medium rounded-lg">C</span>
+                        <span class="skill-badge px-3 py-1 bg-white border border-gray-200 text-gray-700 text-sm font-medium rounded-lg">Java</span>
+                        <span class="skill-badge px-3 py-1 bg-white border border-gray-200 text-gray-700 text-sm font-medium rounded-lg">OCaml</span>
+                        <span class="skill-badge px-3 py-1 bg-white border border-gray-200 text-gray-700 text-sm font-medium rounded-lg">Python</span>
+                    </div>
+                </div>
+
+                <!-- Qualité Logicielle -->
+                <div class="bg-gray-50 rounded-2xl p-8 border border-gray-100 shadow-sm fade-in hover:shadow-md transition-shadow">
+                    <div class="w-12 h-12 bg-blue-100 text-accent rounded-xl flex items-center justify-center text-2xl mb-6">
+                        <i class="fas fa-check-double"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-midnight-900 mb-4">Qualité Logicielle</h3>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="skill-badge px-3 py-1 bg-white border border-gray-200 text-gray-700 text-sm font-medium rounded-lg">Principes SOLID</span>
+                        <span class="skill-badge px-3 py-1 bg-white border border-gray-200 text-gray-700 text-sm font-medium rounded-lg">Design patterns</span>
+                        <span class="skill-badge px-3 py-1 bg-white border border-gray-200 text-gray-700 text-sm font-medium rounded-lg">UML</span>
+                    </div>
+                </div>
+
+                <!-- Bases de données -->
+                <div class="bg-gray-50 rounded-2xl p-8 border border-gray-100 shadow-sm fade-in hover:shadow-md transition-shadow">
+                    <div class="w-12 h-12 bg-blue-100 text-accent rounded-xl flex items-center justify-center text-2xl mb-6">
+                        <i class="fas fa-database"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-midnight-900 mb-4">Bases de données</h3>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="skill-badge px-3 py-1 bg-white border border-gray-200 text-gray-700 text-sm font-medium rounded-lg">PostgreSQL</span>
+                        <span class="skill-badge px-3 py-1 bg-white border border-gray-200 text-gray-700 text-sm font-medium rounded-lg">SQL</span>
+                    </div>
+                </div>
+
+                <!-- Développement Web -->
+                <div class="bg-gray-50 rounded-2xl p-8 border border-gray-100 shadow-sm fade-in hover:shadow-md transition-shadow">
+                    <div class="w-12 h-12 bg-blue-100 text-accent rounded-xl flex items-center justify-center text-2xl mb-6">
+                        <i class="fas fa-laptop-code"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-midnight-900 mb-4">Développement Web</h3>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="skill-badge px-3 py-1 bg-white border border-gray-200 text-gray-700 text-sm font-medium rounded-lg">HTML5</span>
+                        <span class="skill-badge px-3 py-1 bg-white border border-gray-200 text-gray-700 text-sm font-medium rounded-lg">CSS3</span>
+                        <span class="skill-badge px-3 py-1 bg-white border border-gray-200 text-gray-700 text-sm font-medium rounded-lg">PHP</span>
+                        <span class="skill-badge px-3 py-1 bg-white border border-gray-200 text-gray-700 text-sm font-medium rounded-lg">WordPress</span>
+                    </div>
+                </div>
+
+                <!-- Réseaux & Systèmes -->
+                <div class="bg-gray-50 rounded-2xl p-8 border border-gray-100 shadow-sm fade-in hover:shadow-md transition-shadow">
+                    <div class="w-12 h-12 bg-blue-100 text-accent rounded-xl flex items-center justify-center text-2xl mb-6">
+                        <i class="fas fa-network-wired"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-midnight-900 mb-4">Réseaux & Systèmes</h3>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="skill-badge px-3 py-1 bg-white border border-gray-200 text-gray-700 text-sm font-medium rounded-lg">Sockets IPv6/IPv4</span>
+                        <span class="skill-badge px-3 py-1 bg-white border border-gray-200 text-gray-700 text-sm font-medium rounded-lg">TCP/UDP/DNS/Multicast</span>
+                        <span class="skill-badge px-3 py-1 bg-white border border-gray-200 text-gray-700 text-sm font-medium rounded-lg">Linux</span>
+                        <span class="skill-badge px-3 py-1 bg-white border border-gray-200 text-gray-700 text-sm font-medium rounded-lg">Client-Serveur</span>
+                    </div>
+                </div>
+
+                <!-- Méthodologie & Outils -->
+                <div class="bg-gray-50 rounded-2xl p-8 border border-gray-100 shadow-sm fade-in hover:shadow-md transition-shadow">
+                    <div class="w-12 h-12 bg-blue-100 text-accent rounded-xl flex items-center justify-center text-2xl mb-6">
+                        <i class="fas fa-tools"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-midnight-900 mb-4">Méthodologie & Outils</h3>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="skill-badge px-3 py-1 bg-white border border-gray-200 text-gray-700 text-sm font-medium rounded-lg">Git / GitLab</span>
+                        <span class="skill-badge px-3 py-1 bg-white border border-gray-200 text-gray-700 text-sm font-medium rounded-lg">Agile (Scrum)</span>
+                        <span class="skill-badge px-3 py-1 bg-white border border-gray-200 text-gray-700 text-sm font-medium rounded-lg">Pull requests</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Soft Skills & Langues (Full Width) -->
+            <div class="mt-8 grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Soft Skills -->
+                <div class="bg-midnight-900 rounded-2xl p-8 text-white shadow-lg fade-in">
+                    <h3 class="text-xl font-bold mb-6 flex items-center gap-3">
+                        <i class="fas fa-user-tie text-accent"></i> Soft Skills
+                    </h3>
+                    <ul class="space-y-4">
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-accent mt-1 mr-3"></i>
+                            <span>Esprit analytique et logique face aux incidents</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-accent mt-1 mr-3"></i>
+                            <span>Forte capacité d'adaptation</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-accent mt-1 mr-3"></i>
+                            <span>Autonomie et forte curiosité</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-accent mt-1 mr-3"></i>
+                            <span>Rigueur de développement</span>
+                        </li>
+                    </ul>
+                </div>
+                <!-- Langues -->
+                <div class="bg-gray-100 border border-gray-200 rounded-2xl p-8 shadow-sm fade-in">
+                    <h3 class="text-xl font-bold text-midnight-900 mb-6 flex items-center gap-3">
+                        <i class="fas fa-language text-accent"></i> Langues
+                    </h3>
+                    <div class="space-y-4">
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span class="font-medium text-gray-700">Français</span>
+                                <span class="text-sm text-gray-500">C2 (Bilingue)</span>
+                            </div>
+                            <div class="w-full bg-gray-300 rounded-full h-2">
+                                <div class="bg-accent h-2 rounded-full" style="width: 100%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span class="font-medium text-gray-700">Kabyle</span>
+                                <span class="text-sm text-gray-500">C2 (Natif)</span>
+                            </div>
+                            <div class="w-full bg-gray-300 rounded-full h-2">
+                                <div class="bg-accent h-2 rounded-full" style="width: 100%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span class="font-medium text-gray-700">Arabe</span>
+                                <span class="text-sm text-gray-500">C2 (Bilingue)</span>
+                            </div>
+                            <div class="w-full bg-gray-300 rounded-full h-2">
+                                <div class="bg-accent h-2 rounded-full" style="width: 100%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span class="font-medium text-gray-700">Anglais</span>
+                                <span class="text-sm text-gray-500">C1 (Courant)</span>
+                            </div>
+                            <div class="w-full bg-gray-300 rounded-full h-2">
+                                <div class="bg-accent h-2 rounded-full" style="width: 85%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Expériences Section -->
+    <section id="experiences" class="py-20 bg-gray-50">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 fade-in">
+                <h2 class="text-3xl md:text-4xl font-bold text-midnight-900 mb-4">Expériences Professionnelles</h2>
+                <div class="w-20 h-1 bg-accent mx-auto rounded-full"></div>
+            </div>
+
+            <div class="relative border-l-2 border-accent/30 pl-8 ml-4 md:ml-0 md:pl-0 md:border-l-0 space-y-12">
+                <!-- Ligne centrale cachée sur mobile, visible sur desktop -->
+                <div class="hidden md:block absolute left-1/2 transform -translate-x-1/2 w-0.5 h-full bg-accent/30 top-0"></div>
+
+                <!-- Expérience 1 -->
+                <div class="relative fade-in md:flex md:justify-between md:items-center w-full">
+                    <div class="absolute w-4 h-4 rounded-full bg-accent -left-[37px] md:left-1/2 md:transform md:-translate-x-1/2 mt-1.5 md:mt-0 border-4 border-white shadow"></div>
+                    
+                    <div class="md:w-5/12 mb-2 md:mb-0 md:text-right md:pr-10">
+                        <span class="inline-block px-3 py-1 bg-blue-100 text-accent font-semibold text-sm rounded-full mb-2">03/2026 - Présent</span>
+                    </div>
+                    
+                    <div class="md:w-5/12 bg-white p-6 rounded-2xl shadow-sm border border-gray-100 md:pl-10 relative">
+                        <h3 class="text-xl font-bold text-midnight-900">Webmaster</h3>
+                        <a href="https://louvreuse-magazine.fr" target="_blank" class="text-accent font-medium hover:underline flex items-center gap-1 mb-4">
+                            L'Ouvreuse Magazine <i class="fas fa-external-link-alt text-xs"></i>
+                        </a>
+                        <p class="text-gray-600 leading-relaxed">
+                            Gestion du site web : Maintenance et mise à jour, correction d'anomalies et optimisation des contenus. Amélioration continue de l'expérience utilisateur (UX).
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Expérience 2 -->
+                <div class="relative fade-in md:flex md:justify-between md:items-center w-full md:flex-row-reverse">
+                    <div class="absolute w-4 h-4 rounded-full bg-gray-400 -left-[37px] md:left-1/2 md:transform md:-translate-x-1/2 mt-1.5 md:mt-0 border-4 border-white shadow"></div>
+                    
+                    <div class="md:w-5/12 mb-2 md:mb-0 md:pl-10">
+                        <span class="inline-block px-3 py-1 bg-gray-200 text-gray-700 font-semibold text-sm rounded-full mb-2">09/2024 - Présent</span>
+                    </div>
+                    
+                    <div class="md:w-5/12 bg-white p-6 rounded-2xl shadow-sm border border-gray-100 md:text-right md:pr-10 relative">
+                        <h3 class="text-xl font-bold text-midnight-900">Vendeuse Polyvalente</h3>
+                        <p class="text-gray-500 font-medium mb-4">Boulangerie Milligramme</p>
+                        <p class="text-gray-600 leading-relaxed">
+                            Accueil et conseil des clients, gestion des encaissements. Travail en équipe dans un environnement très dynamique exigeant réactivité et sens du relationnel.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projets Section -->
+    <section id="projets" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 fade-in">
+                <h2 class="text-3xl md:text-4xl font-bold text-midnight-900 mb-4">Projets Réalisés</h2>
+                <div class="w-20 h-1 bg-accent mx-auto rounded-full"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                
+                <!-- Projet 1 -->
+                <div class="project-card bg-white rounded-2xl border border-gray-200 overflow-hidden fade-in flex flex-col h-full group">
+                    <div class="h-48 bg-midnight-900 flex items-center justify-center relative overflow-hidden">
+                        <i class="fas fa-subway text-6xl text-white/20 group-hover:scale-110 transition-transform duration-500"></i>
+                        <div class="absolute inset-0 bg-gradient-to-t from-midnight-900/90 to-transparent"></div>
+                        <h3 class="absolute bottom-4 left-6 text-white text-xl font-bold z-10">Simulateur de transports</h3>
+                    </div>
+                    <div class="p-6 flex flex-col flex-grow">
+                        <div class="flex gap-2 mb-4">
+                            <span class="px-2.5 py-1 bg-orange-100 text-orange-700 text-xs font-bold rounded-md">Java 21</span>
+                            <span class="px-2.5 py-1 bg-gray-100 text-gray-700 text-xs font-bold rounded-md">JUnit</span>
+                            <span class="px-2.5 py-1 bg-gray-100 text-gray-700 text-xs font-bold rounded-md">Maven</span>
+                        </div>
+                        <p class="text-gray-600 text-sm mb-4 flex-grow">
+                            Utilisation du multithreading, conception d'une architecture orientée objet (POO) avec encapsulation, héritage, polymorphisme et interfaces. Développement de tests unitaires (JUnit) et gestion du projet avec Maven.
+                        </p>
+                        <div class="pt-4 border-t border-gray-100 mt-auto">
+                            <p class="text-xs text-gray-500 font-medium uppercase tracking-wider"><i class="fas fa-cogs mr-1"></i> Programmation Orientée Objet</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Projet 2 -->
+                <div class="project-card bg-white rounded-2xl border border-gray-200 overflow-hidden fade-in flex flex-col h-full group">
+                    <div class="h-48 bg-blue-800 flex items-center justify-center relative overflow-hidden">
+                        <i class="fas fa-running text-6xl text-white/20 group-hover:scale-110 transition-transform duration-500"></i>
+                        <div class="absolute inset-0 bg-gradient-to-t from-blue-900/90 to-transparent"></div>
+                        <h3 class="absolute bottom-4 left-6 text-white text-xl font-bold z-10">RunTogether</h3>
+                    </div>
+                    <div class="p-6 flex flex-col flex-grow">
+                        <div class="flex gap-2 mb-4">
+                            <span class="px-2.5 py-1 bg-blue-100 text-blue-700 text-xs font-bold rounded-md">PostgreSQL</span>
+                            <span class="px-2.5 py-1 bg-gray-100 text-gray-700 text-xs font-bold rounded-md">SQL</span>
+                            <span class="px-2.5 py-1 bg-gray-100 text-gray-700 text-xs font-bold rounded-md">UML/MCD</span>
+                        </div>
+                        <p class="text-gray-600 text-sm mb-4 flex-grow">
+                            Projet de Bases de données complet : Modélisation relationnelle (UML/MCD), création, structuration et remplissage de la base de données. Utilisation de requêtes SQL avancées pour l'exploitation des données.
+                        </p>
+                        <div class="pt-4 border-t border-gray-100 mt-auto">
+                            <p class="text-xs text-gray-500 font-medium uppercase tracking-wider"><i class="fas fa-database mr-1"></i> Modélisation & Base de données</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Projet 3 -->
+                <div class="project-card bg-white rounded-2xl border border-gray-200 overflow-hidden fade-in flex flex-col h-full group">
+                    <div class="h-48 bg-slate-800 flex items-center justify-center relative overflow-hidden">
+                        <i class="fas fa-comments text-6xl text-white/20 group-hover:scale-110 transition-transform duration-500"></i>
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-900/90 to-transparent"></div>
+                        <h3 class="absolute bottom-4 left-6 text-white text-xl font-bold z-10">Paroles</h3>
+                    </div>
+                    <div class="p-6 flex flex-col flex-grow">
+                        <div class="flex gap-2 mb-4">
+                            <span class="px-2.5 py-1 bg-indigo-100 text-indigo-700 text-xs font-bold rounded-md">C</span>
+                            <span class="px-2.5 py-1 bg-gray-100 text-gray-700 text-xs font-bold rounded-md">IPv6</span>
+                            <span class="px-2.5 py-1 bg-gray-100 text-gray-700 text-xs font-bold rounded-md">Sockets</span>
+                        </div>
+                        <p class="text-gray-600 text-sm mb-4 flex-grow">
+                            Projet de programmation réseau : Développement d'un serveur et d'un client en C implémentant un protocole de communication client-serveur sur IPv6. Conception d'un système de messagerie (utilisateurs, groupes, invitations).
+                        </p>
+                        <div class="pt-4 border-t border-gray-100 mt-auto">
+                            <p class="text-xs text-gray-500 font-medium uppercase tracking-wider"><i class="fas fa-network-wired mr-1"></i> Programmation Réseau</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Formations Section -->
+    <section id="formations" class="py-20 bg-gray-50">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 fade-in">
+                <h2 class="text-3xl md:text-4xl font-bold text-midnight-900 mb-4">Formations</h2>
+                <div class="w-20 h-1 bg-accent mx-auto rounded-full"></div>
+            </div>
+
+            <div class="space-y-8">
+                <!-- Formation 1 -->
+                <div class="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 fade-in flex flex-col md:flex-row gap-6 items-start">
+                    <div class="md:w-1/4">
+                        <div class="bg-midnight-900 text-white text-center py-2 px-4 rounded-lg font-bold text-sm">
+                            2026 - 2028
+                        </div>
+                    </div>
+                    <div class="md:w-3/4">
+                        <h3 class="text-2xl font-bold text-midnight-900 mb-1">Master 1 DATA</h3>
+                        <h4 class="text-accent font-medium mb-3 flex items-center gap-2">
+                            <i class="fas fa-university"></i> Université Paris Cité
+                        </h4>
+                        <p class="text-gray-600">
+                            Bases de données et SQL, statistiques et probabilités, Machine Learning et Intelligence Artificielle, visualisation et exploration des données.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Formation 2 -->
+                <div class="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 fade-in flex flex-col md:flex-row gap-6 items-start">
+                    <div class="md:w-1/4">
+                        <div class="bg-gray-200 text-gray-700 text-center py-2 px-4 rounded-lg font-bold text-sm">
+                            2023 - 2026
+                        </div>
+                    </div>
+                    <div class="md:w-3/4">
+                        <h3 class="text-2xl font-bold text-midnight-900 mb-1">Licence Informatique Fondamentale</h3>
+                        <h4 class="text-gray-600 font-medium mb-3 flex items-center gap-2">
+                            <i class="fas fa-university"></i> Université Paris Cité
+                        </h4>
+                        <p class="text-gray-600">
+                            Développement d'applications (C, Java), algorithmique et mathématiques, bases de données, réseaux, systèmes d'exploitation.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Formation 3 -->
+                <div class="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 fade-in flex flex-col md:flex-row gap-6 items-start">
+                    <div class="md:w-1/4">
+                        <div class="bg-gray-100 text-gray-500 text-center py-2 px-4 rounded-lg font-bold text-sm">
+                            2022 - 2023
+                        </div>
+                    </div>
+                    <div class="md:w-3/4">
+                        <h3 class="text-xl font-bold text-midnight-900 mb-1">Baccalauréat Mathématiques</h3>
+                        <div class="flex items-center gap-3 mb-3">
+                            <span class="bg-green-100 text-green-700 text-xs font-bold px-2 py-1 rounded">Mention Très Bien</span>
+                            <h4 class="text-gray-500 font-medium flex items-center gap-2">
+                                <i class="fas fa-globe-africa"></i> Algérie
+                            </h4>
+                        </div>
+                        <p class="text-gray-600">
+                            Spécialités : Mathématiques, Physique-Chimie.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer / Contact -->
+    <footer id="contact" class="bg-midnight-950 text-white pt-16 pb-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-10 border-b border-gray-800 pb-12 mb-8">
+                
+                <div>
+                    <h3 class="text-3xl font-bold mb-4">Prêt(e) à collaborer ?</h3>
+                    <p class="text-gray-400 mb-6 max-w-md">
+                        Je suis activement à la recherche d'un stage de 8 semaines minimum, ainsi que d'une alternance en Data pour septembre 2027. N'hésitez pas à me contacter !
+                    </p>
+                    <div class="flex gap-4">
+                        <!-- Remplacer les '#' par les vrais liens (LinkedIn/GitHub) -->
+                        <a href="https://linkedin.com/" target="_blank" class="w-12 h-12 bg-gray-800 hover:bg-accent rounded-full flex items-center justify-center transition-colors text-xl">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="https://github.com/" target="_blank" class="w-12 h-12 bg-gray-800 hover:bg-gray-600 rounded-full flex items-center justify-center transition-colors text-xl">
+                            <i class="fab fa-github"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="flex flex-col md:items-end justify-center">
+                    <div class="space-y-4 text-gray-300">
+                        <a href="mailto:cynthiabaleh5@gmail.com" class="flex items-center gap-3 hover:text-accent transition-colors group">
+                            <div class="w-10 h-10 bg-gray-800 group-hover:bg-accent/20 rounded-lg flex items-center justify-center transition-colors">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <span class="text-lg">cynthiabaleh5@gmail.com</span>
+                        </a>
+                        <a href="tel:+33751298082" class="flex items-center gap-3 hover:text-accent transition-colors group">
+                            <div class="w-10 h-10 bg-gray-800 group-hover:bg-accent/20 rounded-lg flex items-center justify-center transition-colors">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <span class="text-lg">07 51 29 80 82</span>
+                        </a>
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <span class="text-lg">Paris, France</span>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="flex flex-col md:flex-row justify-between items-center text-gray-500 text-sm">
+                <p>&copy; 2026 Cynthia BALEH. Tous droits réservés.</p>
+                <p class="mt-2 md:mt-0">Fait avec <i class="fas fa-heart text-red-500"></i> et Tailwind CSS</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts fonctionnels -->
+    <script>
+        
+        // 1. Menu Mobile Toggle
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+
+        btn.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
+        });
+
+        // Fermer le menu mobile au clic sur un lien
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                menu.classList.add('hidden');
+            });
+        });
+
+        // 2. Navbar Effet au Scroll
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('shadow-md');
+                navbar.classList.replace('bg-white/90', 'bg-white/95');
+            } else {
+                navbar.classList.remove('shadow-md');
+                navbar.classList.replace('bg-white/95', 'bg-white/90');
+            }
+        });
+
+        // 3. Animations Fade-In au scroll (Intersection Observer)
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.15
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('appear');
+                    observer.unobserve(entry.target); // Ne jouer l'animation qu'une seule fois
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(element => {
+            observer.observe(element);
+        });
+    </script>
+</body>
+</html>
